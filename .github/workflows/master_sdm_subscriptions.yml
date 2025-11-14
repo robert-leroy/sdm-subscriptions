@@ -70,6 +70,6 @@ jobs:
       with:
         inlineScript: |
               az webapp config container set \
-              --name TestAppVariables \
+              --name TestWebAppVar \
               --resource-group TestAppVariables \
               --docker-custom-image-name TestAppVariables.azurecr.io/testapp:${{ github.sha }}
