@@ -6,7 +6,7 @@ name: (Production) Build and deploy API
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**'
       - '!.github/**'
