@@ -1,6 +1,6 @@
 # Multi-stage build for Vue.js + Vite application
 # Stage 1: Build the application
-FROM node:20-alpine AS build-stage
+FROM node:24-alpine AS build-stage
 
 # Set working directory
 WORKDIR /app
@@ -9,11 +9,11 @@ WORKDIR /app
 COPY package*.json ./
 
 # Start and enable SSH
-RUN apk add openssh \
-    && echo "root:Docker!" | chpasswd \
-    && chmod +x /api/entrypoint.sh \
-    && cd /etc/ssh/ \
-    && ssh-keygen -A
+RUN apk add openssh 
+RUN echo "root:Docker!" | chpasswd 
+RUN chmod +x /api/entrypoint.sh 
+RUN cd /etc/ssh/ 
+RUN ssh-keygen -A
 
 COPY sshd_config /etc/ssh/
 COPY entrypoint.sh /api/entrypoint.sh
