@@ -8,6 +8,16 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
+# Start and enable SSH
+RUN apk add openssh \
+    && echo "root:Docker!" | chpasswd \
+    && chmod +x /api/entrypoint.sh \
+    && cd /etc/ssh/ \
+    && ssh-keygen -A
+
+COPY sshd_config /etc/ssh/
+COPY entrypoint.sh /api/entrypoint.sh
+
 # Install dependencies
 RUN npm ci --only=production=false
 
@@ -64,7 +74,7 @@ EOF
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 80 2222
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
