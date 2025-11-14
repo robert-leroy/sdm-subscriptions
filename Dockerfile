@@ -7,16 +7,15 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
+COPY sshd_config /etc/ssh/
+COPY entrypoint.sh /app/entrypoint.sh
 
 # Start and enable SSH
 RUN apk add openssh 
 RUN echo "root:Docker!" | chpasswd 
-RUN chmod +x /api/entrypoint.sh 
+RUN chmod +x /app/entrypoint.sh 
 RUN cd /etc/ssh/ 
 RUN ssh-keygen -A
-
-COPY sshd_config /etc/ssh/
-COPY entrypoint.sh /api/entrypoint.sh
 
 # Install dependencies
 RUN npm ci --only=production=false
@@ -77,4 +76,4 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80 2222
 
 # Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/app/entrypoint.sh"]
