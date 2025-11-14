@@ -70,7 +70,7 @@ server {
 EOF
 
 # Copy built application from build stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+#COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80 2222
