@@ -72,4 +72,5 @@ jobs:
               az webapp config container set \
               --name TestWebAppVar \
               --resource-group TestAppVariables \
-              --docker-custom-image-name TestAppVariables.azurecr.io/testapp:${{ github.sha }}
+              --container-registry-url TestAppVariables.azurecr.io \
+              --container-image-name TestAppVariables.azurecr.io/testapp:${{ github.sha }}
