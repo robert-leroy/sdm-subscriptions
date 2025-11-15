@@ -12,6 +12,11 @@ on:
       - '!.github/**'
   workflow_dispatch:
 
+env:
+  VITE_APP_TITLE: 'This is from GH Actions'
+  VITE_APP_VERSION: '1.0.0'
+  APP_VITE_APP_TITLE: 'APP_VITE_APP_TITLE from GH Actions'
+
 jobs:
   build:
     runs-on: 'ubuntu-latest'
