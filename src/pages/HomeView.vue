@@ -63,10 +63,10 @@
 import { ref } from "vue";
 
 const appTitle = ref(
-  process.env.APP_VITE_APP_TITLE || "Define the VITE Variables"
+  import.meta.env.VITE_APP_TITLE || "Define the VITE Variables"
 );
 const appVersion = ref(
-  process.env.APP_VITE_APP_VERSION || "9.9.9"
+  import.meta.env.VITE_APP_VERSION || "9.9.9"
 );
 </script>
 
