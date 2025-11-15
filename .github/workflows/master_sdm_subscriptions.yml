@@ -72,4 +72,4 @@ jobs:
               az webapp config container set \
               --name TestWebAppVar \  
               --resource-group TestAppVariables \
-              --container-image-name https://testappvariables-agdsggevh7fnbacp.azurecr.io/testapp:${{ github.sha }}
+              --container-image-name testappvariables-agdsggevh7fnbacp.azurecr.io/testapp:${{ github.sha }}
